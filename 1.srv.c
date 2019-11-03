@@ -13,22 +13,17 @@
 // Function designed for chat between client and server. 
 void func(int sockfd) 
 { 
-    char *buff; 
+    char buff[MAX]; 
     int n; 
     // infinite loop for chat 
     for (;;) { 
-    	buff = (char*)malloc(30 * sizeof(char)); 
-        //bzero(buff, strlen(buff)); 
-  
+        bzero(buff, sizeof(buff)); 
         // read the message from client and copy it in buffer 
         read(sockfd, buff, sizeof(buff)); 
 
         // print buffer which contains the client contents 
         printf("From client: %s\t To client : ", buff); 
-        //bzero(buff, strlen(buff)); 
-        free(buff);
-
-        buff = (char*)malloc(50 * sizeof(char));
+        bzero(buff, sizeof(buff)); 
 
         n = 0; 
         // copy server message in the buffer 
@@ -42,8 +37,6 @@ void func(int sockfd)
             printf("Server Exit...\n"); 
             break; 
         } 
-
-        free(buff);
     } 
 } 
 
@@ -86,6 +79,7 @@ int main(){
 
     while (1) {
 	    // Accept the data packet from client and verification 
+        // Always listening to the port, but blocking mechanism
 	    connfd = accept(sockfd, (struct sockaddr *)&cli, &len); 
 	    if (connfd < 0) { 
 	        printf("server acccept failed...\n"); 
