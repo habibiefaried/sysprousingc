@@ -75,12 +75,11 @@ int main(){
     } 
     else
         printf("Server listening..\n"); 
-    len = sizeof(cli); 
 
     while (1) {
 	    // Accept the data packet from client and verification 
         // Always listening to the port, but blocking mechanism
-	    connfd = accept(sockfd, (struct sockaddr *)&cli, &len); 
+	    connfd = accept(sockfd, (struct sockaddr *)&cli, sizeof(cli)); 
 	    if (connfd < 0) { 
 	        printf("server acccept failed...\n"); 
 	        exit(0); 

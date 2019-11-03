@@ -13,22 +13,18 @@
 // Function designed for chat between client and server. 
 void func(int sockfd, int traffic) 
 { 
-    char *buff; 
+    char buff[MAX]; 
     int n; 
     // infinite loop for chat 
     for (;;) { 
-    	buff = (char*)malloc(300 * sizeof(char)); 
-        //bzero(buff, strlen(buff)); 
+        bzero(buff, sizeof(buff)); 
 
         // read the message from client and copy it in buffer 
         read(sockfd, buff, sizeof(buff)); 
 
         // print buffer which contains the client contents 
         printf("(%d) From client: %s\n", traffic, buff); 
-        //bzero(buff, strlen(buff)); 
-        free(buff);
-
-        buff = (char*)malloc(500 * sizeof(char));
+        bzero(buff, sizeof(buff)); 
 
         n = 0; 
         // copy server message in the buffer 
@@ -42,8 +38,6 @@ void func(int sockfd, int traffic)
             printf("Server Exit...\n"); 
             break; 
         } 
-
-        free(buff);
     } 
 } 
 
@@ -105,6 +99,7 @@ int main(){
         int pid = fork(); //
         if (pid < 0){
             printf("Error while forking");
+            return 0;
         } else if (pid == 0){ //Child
             close(sockfd);
             func(connfd, traffic);  
