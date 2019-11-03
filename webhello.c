@@ -78,11 +78,11 @@ int main(){
 	    // Accept the data packet from client and verification 
 	    connfd = accept(sockfd, (struct sockaddr *)&cli, &len); 
 	    if (connfd < 0) { 
-	        printf("server acccept failed...\n"); 
+	        printf("server accept failed...\n"); 
 	        exit(0); 
 	    } 
 	    else
-	        printf("server acccept the client at traffic %d...\n",traffic); 
+	        printf("server accept the client at traffic %d...\n",traffic); 
 	  
         // Forks process after accept
         int pid = fork(); //
