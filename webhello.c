@@ -8,7 +8,7 @@
 #include <sys/types.h> 
 #include <string.h>
 #define MAX 32000
-#define PORT 31337
+#define PORT 8181
 #define BUFSIZE 8096
 
 // Function designed for chat between client and server. 
