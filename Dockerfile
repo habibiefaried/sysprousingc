@@ -1,5 +1,5 @@
 FROM ubuntu
-EXPOSE 31337
+EXPOSE 8181
 
 RUN useradd -ms /bin/bash srv
 ADD . /home/srv/code
